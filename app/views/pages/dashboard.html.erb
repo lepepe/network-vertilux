@@ -1,0 +1,33 @@
+<div class="home_container">
+  <div class="row">
+    <h1 class="text-center">Dashboard</h1>
+    <% @host_types.each do |type| %>
+      <div class="col-md-3">
+        <h3 class="text-center">
+          <%= form_tag new_host_path, method: :get do %>
+            <%= hidden_field_tag "host_type_id", type.id %>
+            <i class="<%= type.icon %>"></i> <%= type.name %> <%= submit_tag "New" +" "+ type.name.singularize, name: nil, class: "btn btn-primary btn-xs" %>
+          <% end %>
+        </h3>
+        <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% @hosts.each do |host| %>
+              <% if host.host_type_id == type.id %>
+                <tr>
+                  <td><%= link_to host.name, host_path(host) %></td>
+                  <td><%= link_to "Edit", edit_host_path(host) %></td>
+                </tr>
+              <% end %>
+            <% end %>
+            </tbody>
+          </table>
+      </div>
+    <% end %>
+  </div>
+</div>

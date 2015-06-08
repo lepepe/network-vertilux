@@ -1,0 +1,5 @@
+<div class="text-center">
+  <h1>New <%= @host.host_type.name.singularize %></h1>
+    <%= render 'form' %>
+  <%= link_to 'Back', hosts_path %>
+</div>

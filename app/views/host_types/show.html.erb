@@ -1,0 +1,27 @@
+<div class="home_container">
+  <h1><i class="<%= @host_type.icon %>"></i> <%= @host_type.name %></h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Host Name</th>
+        <th>Additional Fields</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @host_type.hosts.each do |host| %>
+        <tr>
+          <td><%= host.host_type.name %></td>
+          <td><%= host.name %></td>
+          <td>
+            <% host.properties.each do |name, value| %>
+              <b><%= name.humanize %>:</b>
+              <%= value %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

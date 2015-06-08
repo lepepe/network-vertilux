@@ -1,0 +1,17 @@
+<%= simple_form_for(@host_type, html: {class: "form-signin"}) do |f| %>
+  <%= f.error_notification %>
+
+    <%= f.input :name, required: true, label: false, placeholder: "Name", input_html: {class: "form-control"} %>
+    <br>
+    <%= f.input :icon, required: true, label: false, placeholder: "Example: fa fa-print", input_html: {class: "form-control"} %>
+    <br>
+    <%= f.text_area :description, label: false, placeholder: "Description", class: "form-control" %>
+    <br>
+
+    <%= f.fields_for :fields do |builder| %>
+      <%= render 'field_fields', f: builder %>
+    <% end %>
+    <%= link_to_add_fields "Add Field", f, :fields %>
+
+    <%= f.button :submit, class: "btn btn-primary btn-block" %>
+<% end %>

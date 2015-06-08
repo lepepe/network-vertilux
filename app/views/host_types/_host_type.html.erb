@@ -1,0 +1,23 @@
+<div class="col-sm-6 col-md-3">
+  <div class="thumbnail text-center">
+    <%= link_to host_type_path(host_type) do %>
+      <i class="<%= host_type.icon %> fa-5x"></i>
+    <% end %>
+    <div class="caption">
+      <h3><%= host_type.name %></h3>
+      <p><%= host_type.description %></p>
+      <p><%= Host.where(:host_type_id => host_type.id).count %></p>
+      <p>
+        <% if Host.where(:host_type_id => host_type.id).count != 0 %>
+          <%= link_to "List Them", host_type, class: "btn btn-primary"  %>
+        <% else %>
+          <%= link_to "No Hosts", host_type, class: "btn btn-default", disabled: "disabled"  %>
+        <% end %>
+      </p>
+      <p>
+        <%= link_to 'Edit', edit_host_type_path(host_type) %> |
+        <%= link_to 'Destroy', host_type, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </p>
+    </div>
+  </div>
+</div>

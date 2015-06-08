@@ -1,0 +1,32 @@
+<h1><%= @host.name %></h1>
+<hr>
+<div class="row">
+	<div class="col-md-2">
+    <i class="<%= @host.host_type.icon %> fa-5x"></i>
+	</div>
+
+	<div class="col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <i class="<%= @host.host_type.icon %>"></i> <%= @host.name %> - <%= @host.host_type.name.singularize %>
+        <div class="pull-right">
+          <%= link_to edit_host_path(@host) do %><i class="fa fa-edit"></i> Edit<% end %> |
+          <%= link_to @host, method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash"></i> Delete<% end %>
+        </div>
+      </div>
+      <div class="panel-body">
+        <p class="panel">
+          <strong>Hosta Name:</strong>
+          <%= @host.name %>
+        </p>
+
+        <% @host.properties.each do |name, value| %>
+          <strong><%= name.humanize %>:</strong>
+          <%= value %>
+          <br>
+        <% end %>
+      </div>
+    </div>
+
+	</div>
+</div>

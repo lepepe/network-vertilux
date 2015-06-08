@@ -1,0 +1,15 @@
+<%= simple_form_for(@host, html: {class: "form-signin"}) do |f| %>
+  <%= f.error_notification %>
+
+    <%= f.input :name, required: true, label: false, placeholder: "Network Name", input_html: {class: "form-control"} %>
+
+    <%= f.hidden_field :host_type_id %>
+
+    <%= f.fields_for :properties, OpenStruct.new(@host.properties) do |builder| %>
+      <% @host.host_type.fields.each do |field| %>
+        <%= render "hosts/fields/#{field.field_type}", field: field, f: builder %>
+      <% end %>
+    <% end %>
+    <br>
+    <%= f.submit class: "btn btn-primary btn-block" %>
+<% end %>
