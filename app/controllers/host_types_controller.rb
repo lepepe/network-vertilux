@@ -47,7 +47,7 @@ class HostTypesController < ApplicationController
 
   private
     def set_host_type
-      @host_type = HostType.find(params[:id])
+      @host_type = HostType.friendly.find(params[:id])
     end
 
     def host_type_params

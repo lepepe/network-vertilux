@@ -51,7 +51,7 @@ class HostsController < ApplicationController
 
   private
     def set_host
-      @host = Host.find(params[:id])
+      @host = Host.friendly.find(params[:id])
     end
 
     def host_params
