@@ -4,9 +4,9 @@ class HostsController < ApplicationController
 
   def index
     if params[:search]
-      @hosts = Host.search(params[:search])
+      @hosts = Host.search(params[:search]).paginate(:page => params[:page], :per_page => 15)
     else
-      @hosts = Host.all
+      @hosts = Host.all.paginate(:page => params[:page], :per_page => 15)
     end
   end
 

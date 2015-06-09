@@ -7,6 +7,7 @@ class HostTypesController < ApplicationController
   end
 
   def show
+    @hosts = @host_type.hosts.paginate(:page => params[:page], :per_page => 15)
   end
 
   def new

@@ -10,10 +10,10 @@
       </tr>
     </thead>
     <tbody>
-      <% @host_type.hosts.each do |host| %>
+      <% @host_type.hosts.paginate(:page => params[:page], :per_page => 15).each do |host| %>
         <tr>
           <td><%= host.host_type.name %></td>
-          <td><%= host.name %></td>
+          <td><%= link_to host.name, host %></td>
           <td>
             <% host.properties.each do |name, value| %>
               <b><%= name.humanize %>:</b>
@@ -24,4 +24,6 @@
       <% end %>
     </tbody>
   </table>
+
+  <%= will_paginate @hosts, class: "pagination pagination-sm", renderer: BootstrapPagination::Rails %>
 </div>

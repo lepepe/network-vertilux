@@ -1,4 +1,13 @@
-<h1>Hosts</h1>
+<div class="row">
+  <div class="col-md-8"><h1>Hosts</h1></div>
+  <div class="col-md-4 text-right">
+    <%= form_tag new_host_path, class: "form-inline", method: :get do %>
+      <%= select_tag :host_type_id, options_from_collection_for_select(HostType.all, :id, :name), class: "form-control"  %>
+      <button type="submit" class="btn btn-primary">New Host</button>
+    <% end %>
+  </div>
+</div>
+
 <table class="table">
   <thead>
     <tr>
@@ -24,7 +33,4 @@
   </tbody>
 </table>
 
-<%= form_tag new_host_path, class: "form-inline", method: :get do %>
-  <%= select_tag :host_type_id, options_from_collection_for_select(HostType.all, :id, :name), class: "form-control"  %>
-  <button type="submit" class="btn btn-primary">New Host</button>
-<% end %>
+<%= will_paginate @hosts, class: "pagination pagination-sm", renderer: BootstrapPagination::Rails %>

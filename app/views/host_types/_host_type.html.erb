@@ -15,8 +15,12 @@
         <% end %>
       </p>
       <p>
-        <%= link_to 'Edit', edit_host_type_path(host_type) %> |
-        <%= link_to 'Destroy', host_type, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to edit_host_type_path(host_type) do %>
+          <i class="fa fa-edit"></i> Edit
+        <% end %> |
+        <%= link_to host_type, method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <i class="fa fa-trash"></i> Delete
+        <% end %>
       </p>
     </div>
   </div>
